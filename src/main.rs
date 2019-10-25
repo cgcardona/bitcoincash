@@ -32,19 +32,28 @@
 //     language: String,
 //     bits: u16,
 // }
+#[macro_use]
+extern crate lazy_static;
+extern crate ring;
 
 mod util;
 
 fn main() {
-    let bits: u16 = 256;
-    let m: util::Mnemonic = util::Mnemonic::generate(bits);
-    println!("Hello {:#?}", m);
+    // let bits: u16 = 256;
+    // let m: util::Mnemonic = util::Mnemonic::generate(bits);
+    // println!("Hello {:#?}", m);
+    // util::Mnemonic::from_entropy();
+    // util::Mnemonic::to_entropy();
+    // util::Mnemonic::validate();
+    // util::Mnemonic::to_seed();
+    // util::Mnemonic::word_lists();
+    // util::Mnemonic::to_keypairs();
+    // util::Mnemonic::to_keypairs();
 
-    util::Mnemonic::from_entropy();
-    util::Mnemonic::to_entropy();
-    util::Mnemonic::validate();
-    util::Mnemonic::to_seed();
-    util::Mnemonic::word_lists();
-    util::Mnemonic::to_keypairs();
-    util::Mnemonic::to_keypairs();
+    let s: &str = "hello world";
+    let c: String = util::Crypto::hash160(s);
+    println!("Crypto {:#?}", c);
+
+    let r: Result<Vec<u8>, String> = util::Crypto::random_bytes(128);
+    println!("Crypto {:#?}", r);
 }
