@@ -11,7 +11,7 @@ repository  = "https://github.com/cgcardona/bitcoincash"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rust-crypto = "^0.2"
+rust-crypto = "0.2.36"
 rand-bytes = "0.2.0"
 ring = "0.13.2"
 lazy_static = "0.2"

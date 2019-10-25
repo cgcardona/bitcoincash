@@ -64,3 +64,55 @@ impl Crypto {
         Ok(bytes)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn sha1() {
+        let s: &str = "hello world";
+        assert_eq!("2aae6c35c94fcfb415dbe95f408b9ce91ee846ed", Crypto::sha1(s));
+    }
+
+    #[test]
+    fn sha256() {
+        let s: &str = "hello world";
+        assert_eq!(
+            "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9",
+            Crypto::sha256(s)
+        );
+    }
+
+    #[test]
+    fn ripemd160() {
+        let s: &str = "hello world";
+        assert_eq!(
+            "98c615784ccb5fe5936fbc0cbe9dfdb408d92f0f",
+            Crypto::ripemd160(s)
+        );
+    }
+
+    #[test]
+    fn hash256() {
+        let s: &str = "hello world";
+        assert_eq!(
+            "049da052634feb56ce6ec0bc648c672011edff1cb272b53113bbc90a8f00249c",
+            Crypto::hash256(s)
+        );
+    }
+
+    #[test]
+    fn hash160() {
+        let s: &str = "hello world";
+        assert_eq!(
+            "81ac71d673080916224ca67d0cb24dd2b63f17e4",
+            Crypto::hash160(s)
+        );
+    }
+
+    #[test]
+    fn random_bytes() {
+        // TODO test random_bytes
+    }
+}
