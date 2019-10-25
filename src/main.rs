@@ -34,7 +34,10 @@
 // }
 #[macro_use]
 extern crate lazy_static;
+extern crate reqwest;
 extern crate ring;
+extern crate serde;
+extern crate serde_derive;
 
 mod util;
 
@@ -50,10 +53,13 @@ fn main() {
     // util::Mnemonic::to_keypairs();
     // util::Mnemonic::to_keypairs();
 
-    let s: &str = "hello world";
-    let c: String = util::Crypto::hash160(s);
-    println!("Crypto {:#?}", c);
+    // let s: &str = "hello world";
+    // let c: String = util::Crypto::hash160(s);
+    // println!("Crypto {:#?}", c);
 
-    let r: Result<Vec<u8>, String> = util::Crypto::random_bytes(128);
+    // let r: Result<Vec<u8>, String> = util::Crypto::random_bytes(128);
     // println!("Crypto {:#?}", r);
+
+    let cash_address: &str = "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c";
+    let r = util::Address::transactions(&cash_address);
 }

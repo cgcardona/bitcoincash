@@ -15,5 +15,6 @@ rust-crypto = "0.2.36"
 rand-bytes = "0.2.0"
 ring = "0.13.2"
 lazy_static = "0.2"
-
-
+reqwest = "0.9.22"
+serde = "1.0.101"
+serde_derive = "1.0.101"
