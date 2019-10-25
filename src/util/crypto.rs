@@ -3,10 +3,7 @@ extern crate crypto;
 #[derive(Debug)]
 pub struct Crypto {}
 
-use self::crypto::digest::Digest;
-use self::crypto::ripemd160::Ripemd160;
-use self::crypto::sha1::Sha1;
-use self::crypto::sha2::Sha256;
+use self::crypto::{digest::Digest, ripemd160::Ripemd160, sha1::Sha1, sha2::Sha256};
 use ring::rand::{SecureRandom, SystemRandom};
 
 fn rng() -> &'static SecureRandom {
