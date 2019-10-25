@@ -36,7 +36,7 @@
 mod util;
 
 fn main() {
-    let bits: u16 = 128;
+    let bits: u16 = 256;
     let m: util::Mnemonic = util::Mnemonic::generate(bits);
     println!("Hello {:#?}", m);
 
@@ -46,5 +46,5 @@ fn main() {
     util::Mnemonic::to_seed();
     util::Mnemonic::word_lists();
     util::Mnemonic::to_keypairs();
-    util::Mnemonic::find_nearest_word();
+    util::Mnemonic::to_keypairs();
 }
