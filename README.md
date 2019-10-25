@@ -1,4 +1,4 @@
-# rscash
+# bitcoincash
 
 Rust crate for Bitcoin Cash
 
@@ -6,11 +6,11 @@ Rust crate for Bitcoin Cash
 
 ### Installation
 
-First add `rscash` to your Cargo.toml file's `dependencies` block.
+First add `bitcoincash` to your Cargo.toml file's `dependencies` block.
 
 ```
 [dependencies]
-rscash = "0.0.1"
+bitcoincash = "0.0.1"
 ```
 
 ## Usage
@@ -41,8 +41,8 @@ Then when you run it
 
 ```
 cargo run
-   Compiling rscash v0.0.1 (/Users/username/rscash)
+   Compiling bitcoincash v0.0.1 (/Users/username/bitcoincash)
     Finished dev [unoptimized + debuginfo] target(s) in 0.48s
-     Running `target/debug/rscash`
+     Running `target/debug/bitcoincash`
 Hello, 1HZ3X63fM5mWJbMpwhEXVFysXoQgxCjCXn!
 ```
