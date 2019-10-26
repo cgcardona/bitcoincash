@@ -32,6 +32,7 @@
 //     language: String,
 //     bits: u16,
 // }
+
 #[macro_use]
 extern crate lazy_static;
 extern crate reqwest;
@@ -41,6 +42,8 @@ extern crate serde_derive;
 
 pub const MAINNET_BASE_URL: &str = "https://rest.bitcoin.com/v2/";
 pub const TESTNET_BASE_URL: &str = "https://trest.bitcoin.com/v2/";
+pub const MAINNET_BITDB_URL: &str = "https://bitdb.bitcoin.com/";
+pub const TESTNET_BITDB_URL: &str = "https://tbitdb.bitcoin.com/";
 
 mod util;
 
@@ -81,10 +84,10 @@ fn main() {
     // let b = util::Block::details_by_hash(&block_height);
     // println!("{:#?}", b);
 
-    // let block_height: u32 = 500000;
-    // let b = util::Block::details_by_height(&block_height);
-    // println!("{:#?}", b);
-
-    let b = util::Blockchain::get_best_block_hash();
+    let block_height: u32 = 500000;
+    let b = util::Block::details_by_height(&block_height);
     println!("{:#?}", b);
+    // let query: &str = "Hello world";
+    // util::BitDB::foo();
+    // println!("{:#?}", b);
 }

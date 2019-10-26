@@ -1,4 +1,5 @@
 pub use self::address::Address;
+pub use self::bitdb::BitDB;
 pub use self::block::Block;
 pub use self::blockchain::Blockchain;
 pub use self::control::Control;
@@ -10,6 +11,7 @@ pub use self::transaction::Transaction;
 pub use self::util::Util;
 
 mod address;
+mod bitdb;
 mod block;
 mod blockchain;
 mod control;
