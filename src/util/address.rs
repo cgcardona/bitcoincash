@@ -8,7 +8,7 @@ pub struct Address {}
 const BASE_URL: &str = "https://rest.bitcoin.com/v2/address/";
 
 #[derive(Deserialize, Debug)]
-struct AddressDetails {
+pub struct AddressDetails {
     legacyAddress: String,
     cashAddress: String,
     slpAddress: String,
@@ -28,7 +28,7 @@ struct AddressDetails {
 }
 
 #[derive(Deserialize, Debug)]
-struct AddressUTXO {
+pub struct AddressUTXO {
     // TODO: Add UTXOs struct
     utxos: Vec<String>,
     legacyAddress: String,
@@ -38,7 +38,7 @@ struct AddressUTXO {
 }
 
 #[derive(Deserialize, Debug)]
-struct AddressUnconfirmed {
+pub struct AddressUnconfirmed {
     // TODO: Add UTXOs struct
     utxos: Vec<String>,
     legacyAddress: String,
@@ -48,7 +48,7 @@ struct AddressUnconfirmed {
 }
 
 #[derive(Deserialize, Debug)]
-struct AddressTransactions {
+pub struct AddressTransactions {
     pagesTotal: u32,
     legacyAddress: String,
     cashAddress: String,
@@ -58,37 +58,34 @@ struct AddressTransactions {
 }
 
 impl Address {
-    pub fn details(cash_address: &str) -> Result<(), Error> {
+    pub fn details(cash_address: &str) -> Result<AddressDetails, Error> {
         let url: String = format!("{}details/{}", BASE_URL, cash_address);
         let s_slice: &str = &url[..];
         let address_details: AddressDetails = reqwest::get(s_slice)?.json()?;
-        println!("{:#?}", address_details);
-        Ok(())
+        Ok(address_details)
     }
 
-    pub fn utxo(cash_address: &str) -> Result<(), Error> {
+    pub fn utxo(cash_address: &str) -> Result<AddressUTXO, Error> {
         let url: String = format!("{}utxo/{}", BASE_URL, cash_address);
         println!("{}", url);
         let s_slice: &str = &url[..];
         let address_utxo: AddressUTXO = reqwest::get(s_slice)?.json()?;
-        println!("{:#?}", address_utxo);
-        Ok(())
+        Ok(address_utxo)
     }
 
-    pub fn unconfirmed(cash_address: &str) -> Result<(), Error> {
+    pub fn unconfirmed(cash_address: &str) -> Result<AddressUnconfirmed, Error> {
         let url: String = format!("{}unconfirmed/{}", BASE_URL, cash_address);
         println!("{}", url);
         let s_slice: &str = &url[..];
         let address_unconfirmed: AddressUnconfirmed = reqwest::get(s_slice)?.json()?;
-        println!("{:#?}", address_unconfirmed);
-        Ok(())
+        Ok(address_unconfirmed)
     }
 
-    pub fn transactions(cash_address: &str) -> Result<(), Error> {
+    pub fn transactions(cash_address: &str) -> Result<AddressTransactions, Error> {
         let url: String = format!("{}transactions/{}", BASE_URL, cash_address);
         let s_slice: &str = &url[..];
         let transactions: AddressTransactions = reqwest::get(s_slice)?.json()?;
         println!("{:#?}", transactions);
-        Ok(())
+        Ok(transactions)
     }
 }
