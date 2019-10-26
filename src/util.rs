@@ -8,6 +8,7 @@ pub use self::mnemonic::Mnemonic;
 pub use self::slp::SLP;
 pub use self::transaction::Transaction;
 pub use self::util::Util;
+
 mod address;
 mod block;
 mod blockchain;

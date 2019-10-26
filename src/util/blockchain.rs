@@ -2,12 +2,10 @@
 
 use core::result::Result;
 use reqwest::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::Deserialize;
 
 #[derive(Debug)]
 pub struct Blockchain {}
-
-const BASE_URL: &str = "https://rest.bitcoin.com/v2/blockchain/";
 
 #[derive(Deserialize, Debug)]
 pub struct BlockchainInfo {
@@ -81,21 +79,21 @@ pub struct RawMempool {}
 
 impl Blockchain {
     pub fn get_best_block_hash() -> Result<String, Error> {
-        let url: String = format!("{}getBestBlockHash", BASE_URL);
+        let url: String = format!("{}blockchain/getBestBlockHash", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let block_hash: String = reqwest::get(s_slice)?.json()?;
         Ok(block_hash)
     }
 
     pub fn get_blockchain_info() -> Result<BlockchainInfo, Error> {
-        let url: String = format!("{}getBlockchainInfo", BASE_URL);
+        let url: String = format!("{}blockchain/getBlockchainInfo", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let blockchain_info: BlockchainInfo = reqwest::get(s_slice)?.json()?;
         Ok(blockchain_info)
     }
 
     pub fn get_block_count() -> Result<u32, Error> {
-        let url: String = format!("{}getBlockCount", BASE_URL);
+        let url: String = format!("{}blockchain/getBlockCount", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let block_count: u32 = reqwest::get(s_slice)?.json()?;
         Ok(block_count)
@@ -103,7 +101,11 @@ impl Blockchain {
 
     pub fn get_block_header(block_hash: &str) -> Result<String, Error> {
         // TODO: Add query string params
-        let url: String = format!("{}getBlockHeader/{}", BASE_URL, block_hash);
+        let url: String = format!(
+            "{}blockchain/getBlockHeader/{}",
+            crate::MAINNET_BASE_URL,
+            block_hash
+        );
         let s_slice: &str = &url[..];
         let block_header: String = reqwest::get(s_slice)?.json()?;
         Ok(block_header)
@@ -111,14 +113,14 @@ impl Blockchain {
 
     pub fn get_chain_tips() -> Result<ChainTips, Error> {
         // TODO: Get this working properly
-        let url: String = format!("{}getChainTips", BASE_URL);
+        let url: String = format!("{}blockchain/getChainTips", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let chain_tips: ChainTips = reqwest::get(s_slice)?.json()?;
         Ok(chain_tips)
     }
 
     pub fn get_difficulty() -> Result<f32, Error> {
-        let url: String = format!("{}getDifficulty", BASE_URL);
+        let url: String = format!("{}blockchain/getDifficulty", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let difficulty: f32 = reqwest::get(s_slice)?.json()?;
         Ok(difficulty)
@@ -126,14 +128,18 @@ impl Blockchain {
 
     pub fn get_mempool_entry(txid: &str) -> Result<QueryError, Error> {
         // TODO: Add query string and match for Ok/Err
-        let url: String = format!("{}getMempoolEntry/{}", BASE_URL, txid);
+        let url: String = format!(
+            "{}blockchain/getMempoolEntry/{}",
+            crate::MAINNET_BASE_URL,
+            txid
+        );
         let s_slice: &str = &url[..];
         let mempool_entry: QueryError = reqwest::get(s_slice)?.json()?;
         Ok(mempool_entry)
     }
 
     pub fn get_mempool_info() -> Result<MempoolInfo, Error> {
-        let url: String = format!("{}getMempoolInfo", BASE_URL);
+        let url: String = format!("{}blockchain/getMempoolInfo", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let mempool_info: MempoolInfo = reqwest::get(s_slice)?.json()?;
         Ok(mempool_info)
@@ -141,7 +147,7 @@ impl Blockchain {
 
     pub fn get_raw_mempool() -> Result<RawMempool, Error> {
         // TODO: Add query string and match for Ok/Err
-        let url: String = format!("{}getMempoolInfo", BASE_URL);
+        let url: String = format!("{}blockchain/getMempoolInfo", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let raw_mempool: RawMempool = reqwest::get(s_slice)?.json()?;
         Ok(raw_mempool)

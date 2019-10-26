@@ -2,12 +2,10 @@
 
 use core::result::Result;
 use reqwest::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::Deserialize;
 
 #[derive(Debug)]
 pub struct Address {}
-
-const BASE_URL: &str = "https://rest.bitcoin.com/v2/address/";
 
 #[derive(Deserialize, Debug)]
 pub struct AddressDetails {
@@ -61,14 +59,18 @@ pub struct AddressTransactions {
 
 impl Address {
     pub fn details(cash_address: &str) -> Result<AddressDetails, Error> {
-        let url: String = format!("{}details/{}", BASE_URL, cash_address);
+        let url: String = format!(
+            "{}address/details/{}",
+            crate::MAINNET_BASE_URL,
+            cash_address
+        );
         let s_slice: &str = &url[..];
         let address_details: AddressDetails = reqwest::get(s_slice)?.json()?;
         Ok(address_details)
     }
 
     pub fn utxo(cash_address: &str) -> Result<AddressUTXO, Error> {
-        let url: String = format!("{}utxo/{}", BASE_URL, cash_address);
+        let url: String = format!("{}address/utxo/{}", crate::MAINNET_BASE_URL, cash_address);
         println!("{}", url);
         let s_slice: &str = &url[..];
         let address_utxo: AddressUTXO = reqwest::get(s_slice)?.json()?;
@@ -76,7 +78,11 @@ impl Address {
     }
 
     pub fn unconfirmed(cash_address: &str) -> Result<AddressUnconfirmed, Error> {
-        let url: String = format!("{}unconfirmed/{}", BASE_URL, cash_address);
+        let url: String = format!(
+            "{}address/unconfirmed/{}",
+            crate::MAINNET_BASE_URL,
+            cash_address
+        );
         println!("{}", url);
         let s_slice: &str = &url[..];
         let address_unconfirmed: AddressUnconfirmed = reqwest::get(s_slice)?.json()?;
@@ -84,7 +90,11 @@ impl Address {
     }
 
     pub fn transactions(cash_address: &str) -> Result<AddressTransactions, Error> {
-        let url: String = format!("{}transactions/{}", BASE_URL, cash_address);
+        let url: String = format!(
+            "{}address/transactions/{}",
+            crate::MAINNET_BASE_URL,
+            cash_address
+        );
         let s_slice: &str = &url[..];
         let transactions: AddressTransactions = reqwest::get(s_slice)?.json()?;
         println!("{:#?}", transactions);

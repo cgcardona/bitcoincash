@@ -2,12 +2,10 @@
 
 use core::result::Result;
 use reqwest::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::Deserialize;
 
 #[derive(Debug)]
 pub struct Control {}
-
-const BASE_URL: &str = "https://rest.bitcoin.com/v2/control/";
 
 #[derive(Deserialize, Debug)]
 pub struct ControlInfo {
@@ -51,14 +49,14 @@ pub struct Network {
 
 impl Control {
     pub fn get_info() -> Result<ControlInfo, Error> {
-        let url: String = format!("{}getInfo", BASE_URL);
+        let url: String = format!("{}control/getInfo", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let info: ControlInfo = reqwest::get(s_slice)?.json()?;
         Ok(info)
     }
 
     pub fn get_network_info() -> Result<NetworkInfo, Error> {
-        let url: String = format!("{}getNetworkInfo", BASE_URL);
+        let url: String = format!("{}control/getNetworkInfo", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let info: NetworkInfo = reqwest::get(s_slice)?.json()?;
         Ok(info)

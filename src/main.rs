@@ -39,6 +39,9 @@ extern crate ring;
 extern crate serde;
 extern crate serde_derive;
 
+pub const MAINNET_BASE_URL: &str = "https://rest.bitcoin.com/v2/";
+pub const TESTNET_BASE_URL: &str = "https://trest.bitcoin.com/v2/";
+
 mod util;
 
 fn main() {
@@ -82,7 +85,6 @@ fn main() {
     // let b = util::Block::details_by_height(&block_height);
     // println!("{:#?}", b);
 
-    let cash_address: &str = "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c";
-    let b = util::Util::validate_address(cash_address);
+    let b = util::Blockchain::get_best_block_hash();
     println!("{:#?}", b);
 }

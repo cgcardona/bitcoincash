@@ -2,12 +2,10 @@
 // TODO: remove all non_snake_case attributes
 use core::result::Result;
 use reqwest::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::Deserialize;
 
 #[derive(Debug)]
 pub struct SLP {}
-
-const BASE_URL: &str = "https://rest.bitcoin.com/v2/slp/";
 
 #[derive(Deserialize, Debug)]
 pub struct SLPTokens {
@@ -139,7 +137,7 @@ pub struct SLPBurnTotal {
 
 impl SLP {
     pub fn list() -> Result<SLPTokens, Error> {
-        let url: String = format!("{}list", BASE_URL);
+        let url: String = format!("{}slp/list", MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let tokens: SLPTokens = reqwest::get(s_slice)?.json()?;
         println!("{:#?}", tokens);
@@ -155,21 +153,29 @@ impl SLP {
     // }
 
     pub fn convert(slp_address: &str) -> Result<SLPConversion, Error> {
-        let url: String = format!("{}convert/{}", BASE_URL, slp_address);
+        let url: String = format!("{}slp/convert/{}", crate::MAINNET_BASE_URL, slp_address);
         let s_slice: &str = &url[..];
         let conversion: SLPConversion = reqwest::get(s_slice)?.json()?;
         Ok(conversion)
     }
 
     pub fn balances_for_address(slp_address: &str) -> Result<SLPBalances, Error> {
-        let url: String = format!("{}balancesForAddress/{}", BASE_URL, slp_address);
+        let url: String = format!(
+            "{}slp/balancesForAddress/{}",
+            crate::MAINNET_BASE_URL,
+            slp_address
+        );
         let s_slice: &str = &url[..];
         let address_balances: SLPBalances = reqwest::get(s_slice)?.json()?;
         Ok(address_balances)
     }
 
     pub fn balances_for_token(token_id: &str) -> Result<TokenBalances, Error> {
-        let url: String = format!("{}balancesForToken/{}", BASE_URL, token_id);
+        let url: String = format!(
+            "{}slp/balancesForToken/{}",
+            crate::MAINNET_BASE_URL,
+            token_id
+        );
         println!("URL: {:#?}", url);
         let s_slice: &str = &url[..];
         let token_balances: TokenBalances = reqwest::get(s_slice)?.json()?;
@@ -178,35 +184,44 @@ impl SLP {
     }
 
     pub fn balance(slp_address: &str, token_id: &str) -> Result<Balance, Error> {
-        let url: String = format!("{}balance/{}/{}", BASE_URL, slp_address, token_id);
+        let url: String = format!(
+            "{}slp/balance/{}/{}",
+            crate::MAINNET_BASE_URL,
+            slp_address,
+            token_id
+        );
         let s_slice: &str = &url[..];
         let balance: Balance = reqwest::get(s_slice)?.json()?;
         Ok(balance)
     }
 
     pub fn validate_txid(txid: &str) -> Result<SLPValidate, Error> {
-        let url: String = format!("{}validateTxid/{}", BASE_URL, txid);
+        let url: String = format!("{}slp/validateTxid/{}", crate::MAINNET_BASE_URL, txid);
         let s_slice: &str = &url[..];
         let valid: SLPValidate = reqwest::get(s_slice)?.json()?;
         Ok(valid)
     }
 
     pub fn token_stats(token_id: &str) -> Result<SLPTokenStats, Error> {
-        let url: String = format!("{}tokenStats/{}", BASE_URL, token_id);
+        let url: String = format!("{}slp/tokenStats/{}", crate::MAINNET_BASE_URL, token_id);
         let s_slice: &str = &url[..];
         let token_stats: SLPTokenStats = reqwest::get(s_slice)?.json()?;
         Ok(token_stats)
     }
 
     pub fn transaction_details(txid: &str) -> Result<SLPTxDetails, Error> {
-        let url: String = format!("{}txDetails/{}", BASE_URL, txid);
+        let url: String = format!("{}slp/txDetails/{}", crate::MAINNET_BASE_URL, txid);
         let s_slice: &str = &url[..];
         let tx_details: SLPTxDetails = reqwest::get(s_slice)?.json()?;
         Ok(tx_details)
     }
 
     pub fn transactions(token_id: &str, slp_address: &str) -> Result<SLPTransactions, Error> {
-        let url: String = format!("{}transactions/{}", BASE_URL, slp_address);
+        let url: String = format!(
+            "{}slp/transactions/{}",
+            crate::MAINNET_BASE_URL,
+            slp_address
+        );
         let s_slice: &str = &url[..];
         let transactions: SLPTransactions = reqwest::get(s_slice)?.json()?;
         Ok(transactions)
@@ -214,7 +229,7 @@ impl SLP {
 
     // TODO: why is this burnTotal a negative value: https://rest.bitcoin.com/v2/slp/burnTotal/df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb
     pub fn burn_total(txid: &str) -> Result<SLPBurnTotal, Error> {
-        let url: String = format!("{}burnTotal/{}", BASE_URL, txid);
+        let url: String = format!("{}slp/burnTotal/{}", crate::MAINNET_BASE_URL, txid);
         let s_slice: &str = &url[..];
         let burn_total: SLPBurnTotal = reqwest::get(s_slice)?.json()?;
         Ok(burn_total)

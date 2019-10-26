@@ -2,12 +2,10 @@
 
 use core::result::Result;
 use reqwest::Error;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::Deserialize;
 
 #[derive(Debug)]
 pub struct Transaction {}
-
-const BASE_URL: &str = "https://rest.bitcoin.com/v2/transaction/";
 
 #[derive(Deserialize, Debug)]
 pub struct Vin {
@@ -55,7 +53,7 @@ pub struct TransactionDetails {
 
 impl Transaction {
     pub fn get_mining_info(txid: &str) -> Result<TransactionDetails, Error> {
-        let url: String = format!("{}details/{}", BASE_URL, txid);
+        let url: String = format!("{}transaction/details/{}", crate::MAINNET_BASE_URL, txid);
         println!("{}", url);
         let s_slice: &str = &url[..];
         let transaction_details: TransactionDetails = reqwest::get(s_slice)?.json()?;
