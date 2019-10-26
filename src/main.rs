@@ -82,7 +82,7 @@ fn main() {
     // let b = util::Block::details_by_height(&block_height);
     // println!("{:#?}", b);
 
-    let txid: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
-    let b = util::Transaction::get_mining_info(txid);
+    let cash_address: &str = "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c";
+    let b = util::Util::validate_address(cash_address);
     println!("{:#?}", b);
 }
