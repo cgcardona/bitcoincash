@@ -137,7 +137,7 @@ pub struct SLPBurnTotal {
 
 impl SLP {
     pub fn list() -> Result<SLPTokens, Error> {
-        let url: String = format!("{}slp/list", MAINNET_BASE_URL);
+        let url: String = format!("{}slp/list", crate::MAINNET_BASE_URL);
         let s_slice: &str = &url[..];
         let tokens: SLPTokens = reqwest::get(s_slice)?.json()?;
         println!("{:#?}", tokens);
