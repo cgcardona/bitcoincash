@@ -78,7 +78,10 @@ fn main() {
     // let b = util::Block::details_by_hash(&block_height);
     // println!("{:#?}", b);
 
-    let block_height: u32 = 500000;
-    let b = util::Block::details_by_height(&block_height);
+    // let block_height: u32 = 500000;
+    // let b = util::Block::details_by_height(&block_height);
+    // println!("{:#?}", b);
+
+    let b = util::Blockchain::get_blockchain_info();
     println!("{:#?}", b);
 }

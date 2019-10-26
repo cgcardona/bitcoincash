@@ -1,3 +1,5 @@
+#![allow(non_snake_case)]
+
 use core::result::Result;
 use reqwest::Error;
 use serde_derive::{Deserialize, Serialize};

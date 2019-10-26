@@ -1,3 +1,5 @@
+#![allow(non_snake_case)]
+
 use core::result::Result;
 use reqwest::Error;
 use serde_derive::{Deserialize, Serialize};
@@ -37,7 +39,6 @@ pub struct PoolInfo {
 impl Block {
     pub fn details_by_hash(block_hash: &str) -> Result<BlockDetails, Error> {
         let url: String = format!("{}detailsByHash/{}", BASE_URL, block_hash);
-        println!("{}", url);
         let s_slice: &str = &url[..];
         let block_details: BlockDetails = reqwest::get(s_slice)?.json()?;
         Ok(block_details)
@@ -45,7 +46,6 @@ impl Block {
 
     pub fn details_by_height(block_height: &u32) -> Result<BlockDetails, Error> {
         let url: String = format!("{}detailsByHeight/{}", BASE_URL, block_height);
-        println!("{}", url);
         let s_slice: &str = &url[..];
         let block_details: BlockDetails = reqwest::get(s_slice)?.json()?;
         Ok(block_details)
