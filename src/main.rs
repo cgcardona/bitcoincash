@@ -33,6 +33,12 @@
 //     bits: u16,
 // }
 
+// TODO: comment out the following `allow` attributes before publishing new build
+#![allow(unused_variables)]
+#![allow(dead_code)]
+#![allow(non_snake_case)]
+#![allow(bare_trait_objects)]
+#![allow(deprecated)]
 #[macro_use]
 extern crate lazy_static;
 extern crate reqwest;

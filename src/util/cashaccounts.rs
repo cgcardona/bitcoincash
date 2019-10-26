@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use core::result::Result;
 use reqwest::Error;
 use serde_derive::Deserialize;
@@ -97,7 +95,6 @@ impl CashAccounts {
             crate::MAINNET_BASE_URL,
             cash_address
         );
-        println!("{}", url);
         let s_slice: &str = &url[..];
         let reverse_lookups: ReverseLookups = reqwest::get(s_slice)?.json()?;
         Ok(reverse_lookups)

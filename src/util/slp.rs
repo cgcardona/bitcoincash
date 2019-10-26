@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-// TODO: remove all non_snake_case attributes
 use core::result::Result;
 use reqwest::Error;
 use serde_derive::Deserialize;

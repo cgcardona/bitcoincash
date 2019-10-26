@@ -21,8 +21,6 @@ pub struct Q {
 #[derive(Deserialize, Debug)]
 pub struct Find {}
 
-use core::result::Result;
-use reqwest::Error;
 use serde_derive::Deserialize;
 use std::fmt;
 use std::fmt::Display;
