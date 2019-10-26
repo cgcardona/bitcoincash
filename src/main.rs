@@ -70,7 +70,15 @@ fn main() {
     // let token_id: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
     // let t = util::SLP::balance(&cash_address, &token_id);
 
-    let token_id: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
-    let t = util::SLP::burn_total(&token_id);
-    println!("{:#?}", t);
+    // let token_id: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
+    // let t = util::SLP::burn_total(&token_id);
+    // println!("{:#?}", t);
+
+    // let block_height: &str = "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201";
+    // let b = util::Block::details_by_hash(&block_height);
+    // println!("{:#?}", b);
+
+    let block_height: u32 = 500000;
+    let b = util::Block::details_by_height(&block_height);
+    println!("{:#?}", b);
 }
