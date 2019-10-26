@@ -82,6 +82,6 @@ fn main() {
     // let b = util::Block::details_by_height(&block_height);
     // println!("{:#?}", b);
 
-    let b = util::Control::get_network_info();
+    let b = util::Mining::get_network_hashps();
     println!("{:#?}", b);
 }
