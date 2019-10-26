@@ -83,9 +83,10 @@ fn main() {
     // let block_height: &str = "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201";
     // let b = util::Block::details_by_hash(&block_height);
     // println!("{:#?}", b);
-
-    let block_height: u32 = 500000;
-    let b = util::Block::details_by_height(&block_height);
+    // let account: &str = "cgcardona";
+    // let number: &str = "122";
+    let cash_address: &str = "bitcoincash:qr4aadjrpu73d2wxwkxkcrt6gqxgu6a7usxfm96fst";
+    let b = util::CashAccounts::reverse_lookup(cash_address);
     println!("{:#?}", b);
     // let query: &str = "Hello world";
     // util::BitDB::foo();
