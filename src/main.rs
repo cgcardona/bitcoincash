@@ -60,6 +60,13 @@ fn main() {
     // let r: Result<Vec<u8>, String> = util::Crypto::random_bytes(128);
     // println!("Crypto {:#?}", r);
 
-    let cash_address: &str = "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c";
-    let r = util::Address::transactions(&cash_address);
+    // let cash_address: &str = "simpleledger:qz9tzs6d5097ejpg279rg0rnlhz546q4fsnck9wh5m";
+    // let r = util::SLP::convert(&cash_address);
+
+    // let token_id: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
+    // let t = util::SLP::balances_for_token(&token_id);
+
+    let cash_address: &str = "simpleledger:qz9tzs6d5097ejpg279rg0rnlhz546q4fsnck9wh5m";
+    let token_id: &str = "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb";
+    let t = util::SLP::balance(&cash_address, &token_id);
 }

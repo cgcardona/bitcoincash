@@ -1,6 +1,7 @@
 use core::result::Result;
 use reqwest::Error;
 use serde_derive::{Deserialize, Serialize};
+
 #[derive(Debug)]
 pub struct Address {}
 
